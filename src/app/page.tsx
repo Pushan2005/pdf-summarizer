@@ -4,6 +4,29 @@ import { useRef, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import ReactMarkdown from "react-markdown";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "../components/ui/dialog";
+
+function LoadingDialog({ open }: { open: boolean }) {
+    return (
+        <Dialog open={open}>
+            <DialogContent className="flex flex-col items-center gap-4 min-w-[260px]">
+                <DialogHeader>
+                    <DialogTitle>Summarizing your PDF…</DialogTitle>
+                    <DialogDescription>
+                        Please wait while the PDF is being processed!
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="animate-spin rounded-full border-4 border-t-primary border-muted w-12 h-12" />
+            </DialogContent>
+        </Dialog>
+    );
+}
 
 export default function Home() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -36,6 +59,7 @@ export default function Home() {
 
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+            <LoadingDialog open={loading} />
             <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full max-w-xl">
                 <h1 className="text-4xl font-bold tracking-tight text-center mb-2">
                     PDFy
