@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import ReactMarkdown from "react-markdown";
 
 export default function Home() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -61,8 +62,8 @@ export default function Home() {
                 {summary && (
                     <div className="w-full bg-muted/60 dark:bg-muted/20 rounded-lg p-4 border border-border mt-2">
                         <div className="font-semibold mb-2">Summary:</div>
-                        <div className="whitespace-pre-line text-sm">
-                            {summary}
+                        <div className="prose prose-sm dark:prose-invert max-w-none">
+                            <ReactMarkdown>{summary}</ReactMarkdown>
                         </div>
                     </div>
                 )}
